@@ -31,7 +31,6 @@ class DeDup
       # Only include files, and ignore symlinks
       (s.mode & 0100000) != 0 && (s.mode & 0020000) == 0 && s.size != 0 && !@hashes.include?(s.ino)
     end
-    puts "files: #{files}"
     return {} if files.empty? # no actionable files in current directory
     # We are dealing with some very large files, so run external hash tool
     puts "sha256sum '#{files.join('\' \'')}'" if $VERBOSE
